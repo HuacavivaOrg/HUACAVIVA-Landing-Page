@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>www.huacaviva.com</title>
+    <!-- Linking Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Linking Swipper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+
+
+
+    <!--CAMBIO EN LA DIRECCION DE CSS-->
+    <!--
+    <link rel="stylesheet" href="style.css">
+    -->
+    <link rel="stylesheet" href="assets/styles/styles.css">
+
+
+
+
+    <!--
+    Font Awesome te permite usar íconos sin tener que subir imágenes.
+
+    Swiper te da acceso a componentes visuales como carruseles táctiles.
+
+    style.css es donde defines tu propio diseño (colores, márgenes, tipografía, etc.).
+    -->
+
+
+</head>
+
+<body>
+<!-- Header / Navbar-->
+<header>
+    <nav class="navbar section-content">
+        <!--al usar solo # el navegador te lleva al top de la página-->
+        <a href="#" class="nav-logo"> <!--Nombre superior barra-->
+            <img src="assets/images/Logo HUACAVIVA.png" class ="logo-icon">
+            <!--<h2 class="logo-text">HUACAVIVA</h2>-->
+        </a>
+        <ul class="nav-menu">
+
+            <button id="menu-close-button" class="fas fa-times"></button>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="#about" class="nav-link">Nosotros</a>
+            </li>
+            <li class="nav-item">
+                <a href="#benefits" class="nav-link">Beneficios</a>
+            </li>
+            <li class="nav-item">
+                <a href="#testimonials" class="nav-link">Testimonios</a>
+            </li>
+            <li class="nav-item">
+                <a href="#explore" class="nav-link">Explora</a>
+            </li>
+            <li class="nav-item">
+                <a href="#contact" class="nav-link">Contacto</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Log In</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Sign Up</a>
+            </li>
+        </ul>
+
+        <button id="menu-open-button" class="fas fa-bars"></button>
+    </nav>
+</header>
+
+<main>
+    <!-- Hero Section-->
+    <section class="hero-section">
+        <div class="section-content">
+            <div class="hero-details">
+                <h2 class="title">LAS HUACAS<br> PERDURAN CON <br>VIDA</h2>
+                <!--<h3 class="subtitle">Aprende más, entiende mejor</h3>-->
+                <p class="description">HuacaViva utiliza la Realidad Aumentada para reconstruir el pasado directamente en tu smartphone. Descubre, juega y conecta con el patrimonio cultural de Lima de una forma totalmente nueva.</p>
+                <div class="buttons">
+                    <a href="#" class="button start-now">Comienza Ahora</a>
+                    <a href="#contact" class="button contact-us">Contáctanos</a>
+                </div>
+            </div>
+            <div class="hero-image-slider">
+                <img src="assets/images/Huaca1.png" alt="Huaca1" class="slide">
+                <img src ="assets/images/Huaca2.png" alt="Huaca2" class="slide">
+                <img src = "assets/images/Huaca3.png" alt="Huaca3" class="slide">
+                <img src = "assets/images/Huaca4.png" alt="Huaca4" class="slide">
+            </div>
+        </div>
+    </section>
+
+    <!-- Nosotros Section-->
+    <section class="about-section" id="about">
+        <div class="section-content">
+            <div class="about-image-wrapper">
+                <img src="assets/images/Portada About Huacaviva.png" alt="About" class="about-image">
+            </div>
+            <div class="about-details">
+                <h2 class="section-title">¿Quiénes somos?</h2>
+                <p class="text">
+                    En HuacaViva no solo desarrollamos tecnología;
+                    reconectamos historia viva. Somos una startup cultural y tecnológica
+                    que transforma la forma en que Lima se relaciona con su patrimonio
+                    arqueológico, utilizando Realidad Aumentada para convertir huacas
+                    olvidadas en espacios inmersivos de aprendizaje, identidad y comunidad.
+                    Nuestra misión es cerrar la brecha entre los ciudadanos y su herencia
+                    prehispánica; nuestra visión, reimaginar cómo las nuevas generaciones
+                    descubren, valoran y preservan su historia. Súmate al cambio. Descubre
+                    distinto. Conecta con HuacaViva.
+                </p>
+
+                <!-- Íconos sociales ahora dentro del bloque de texto -->
+                <div class="social-link-list">
+                    <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!--Menu Section-->
+    <section class="menu-section" id="benefits">
+
+        <h2 class="section-title title-benefits">¿Qué ofrece HUACAVIVA?</h2>
+
+
+        <div class="section-content">
+
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <img src="assets/images/Exploración Interactiva Img.png" alt="Aprendizaje Autonomo" class="menu-image">
+                    <h3 class="name">Exploración Interactiva</h3>
+                    <p class="text">Descubre las huacas de Lima con recorridos en realidad aumentada desde tu celular.</p>
+                </li>
+
+                <li class="menu-item">
+                    <img src="assets/images/Aprendizaje Cultural Img.png" alt="Mejora Comprension" class="menu-image">
+                    <h3 class="name">Aprendizaje Cultural</h3>
+                    <p class="text">Aprende historia y tradiciones peruanas de forma dinámica y visual.</p>
+                </li>
+
+                <li class="menu-item">
+                    <img src="assets/images/Rutas Patrimoniales Img.png" alt="Respuestas Personalizadas" class="menu-image">
+                    <h3 class="name">Rutas Patrimoniales</h3>
+                    <p class="text">Sigue circuitos temáticos que conectan distintos sitios arqueológicos.</p>
+                </li>
+
+                <li class="menu-item">
+                    <img src="assets/images/Experiencia Personalizada Img.png" alt="Ahorra Tiempo de Estudio" class="menu-image">
+                    <h3 class="name">Experiencia Personalizada</h3>
+                    <p class="text">Vive una visita adaptada a tu ritmo e intereses culturales.</p>
+                </li>
+
+                <li class="menu-item">
+                    <img src="assets/images/Gamificacion del Conocimiento Img.png" alt="Adaptado a tu Nivel" class="menu-image">
+                    <h3 class="name">Gamificación del Conocimiento</h3>
+                    <p class="text">Aprende jugando: completa retos y desbloquea contenidos ocultos.</p>
+                </li>
+
+                <li class="menu-item">
+                    <img src="assets/images/Conexion con la Comunidad Img.png" alt="Disponibilidad 24/7" class="menu-image">
+                    <h3 class="name">Conexión con la Comunidad</h3>
+                    <p class="text">Participa en eventos y comparte experiencias sobre el patrimonio de Lima.</p>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
+    <!--Testimonials Section-->
+    <section class="testimonials-section" id="testimonials">
+        <h2 class="section-title">Testimonios</h2>
+        <div class="section-content">
+            <div class="slider-container swiper">
+                <div class="slider-wrapper">
+                    <ul class="testimoninials-list swiper-wrapper">
+
+                        <li class="testimonial swiper-slide">
+                            <img src="assets/images/Testimonio Sofia.png" alt="User" class="user-image">
+                            <h3 class="name">Sofía Ramirez, Exploradora</h3>
+                            <i class="feedback">“Esta aplicación ha transformado mis visitas a las huacas. La realidad aumentada es fascinante”</i>
+                        </li>
+
+                        <li class="testimonial swiper-slide">
+                            <img src="assets/images/Testimonio Walter.png" alt="User" class="user-image">
+                            <h3 class="name">Walter Alva, Arqueólogo</h3>
+                            <i class="feedback">“Como arqueólogo, encuentro esta herramienta invaluable para la divulgación de nuestro patrimonio”</i>
+                        </li>
+
+                        <li class="testimonial swiper-slide">
+                            <img src="assets/images/Testimonio Ana.png" alt="User" class="user-image">
+                            <h3 class="name">Ana Lopez, Estudiante</h3>
+                            <i class="feedback">“Me encanta poder explorar las huacas desde casa y aprender sobre su historia de forma interactiva”</i>
+                        </li>
+
+                        <li class="testimonial swiper-slide">
+                            <img src="assets/images/Testimonio Rosario.png" alt="User" class="user-image">
+                            <h3 class="name">Rosario Gutiérrez, Docente</h3>
+                            <i class="feedback">“Con HuacaViva puedo acercar a mis alumnos al patrimonio cultural de manera práctica e interactiva.”</i>
+                        </li>
+
+                        <li class="testimonial swiper-slide">
+                            <img src="assets/images/Testimonio Andres.png" alt="User" class="user-image">
+                            <h3 class="name">Andrés Ramos, Profesional joven</h3>
+                            <i class="feedback">“HuacaViva me permite conectar con la historia de Lima desde una perspectiva innovadora y cercana.”</i>
+                        </li>
+
+
+                    </ul>
+
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-slide-button swiper-button-prev"></div>
+                    <div class="swiper-slide-button swiper-button-next"></div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Explore Section-->
+    <section class="gallery-section" id="explore">
+        <h2 class="section-title">Explora HUACAVIVA</h2>
+        <div class="section-content">
+            <ul class="gallery-list">
+                <li class="gallery-item">
+                    <img src="assets/images/Img 1 Web.png" alt="Gallery" class="gallery-image">
+                </li>
+                <li class="gallery-item">
+                    <img src="assets/images/Img 2 Web.png" alt="Gallery" class="gallery-image">
+                </li>
+                <li class="gallery-item">
+                    <img src="assets/images/Img 3 Web.png" alt="Gallery" class="gallery-image">
+                </li>
+                <li class="gallery-item">
+                    <img src="assets/images/Img 4 Web.png" alt="Gallery" class="gallery-image">
+                </li>
+                <li class="gallery-item">
+                    <img src="assets/images/Img 5 Web.png" alt="Gallery" class="gallery-image">
+                </li>
+                <li class="gallery-item">
+                    <img src="assets/images/Img 6 Web.png" alt="Gallery" class="gallery-image">
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!--Contact Section-->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Contáctanos</h2>
+        <div class="section-content">
+            <ul class="contact-info-list">
+                <li class="contact-info">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                    <p>Av. Gral. Salaverry 2255, San Isidro 15076, Lima, Perú</p>
+                </li>
+                <li class="contact-info">
+                    <i class="fa-regular fa-envelope"></i>
+                    <p>HuacaViva@gmail.com</p>
+                </li>
+                <li class="contact-info">
+                    <i class="fa-solid fa-phone"></i>
+                    <p>(+51) 969 603 740</p>
+                </li>
+                <li class="contact-info">
+                    <i class="fa-regular fa-clock"></i>
+                    <p>Lunes - Viernes: 9:00 AM - 6:00 PM</p>
+                </li>
+                <li class="contact-info">
+                    <i class="fa-regular fa-clock"></i>
+                    <p>Sábados: 10:00 AM - 2:00 PM</p>
+                </li>
+
+                <li class="contact-info">
+                    <i class="fa-solid fa-globe"></i>
+                    <p>www.HuacaViva.com</p>
+                </li>
+            </ul>
+
+            <form action="#" class="contact-form">
+                <input type="text" placeholder="Tu nombre" class="form-input" required>
+                <input type="email" placeholder="Tu email" class="form-input" required>
+                <textarea placeholder="Tu mensaje" class="form-input" required></textarea>
+
+                <button class="submit-button">Enviar</button>
+
+            </form>
+
+        </div>
+    </section>
+
+    <!--Footer Section-->
+    <section class="footer-section">
+        <div class="section-content">
+            <p class="copyright-text">© 2025 HUACAVIVA</p>
+
+            <!-- Íconos sociales ahora dentro del bloque de texto -->
+            <div class="social-link-list">
+                <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+
+            <p class="policy-text">
+                <a href="#" class="policy-link">Privacy policy</a>
+                <span class="separator">•</span>
+                <a href="#" class="policy-link">Refund policy</a>
+            </p>
+
+        </div>
+
+        </div>
+    </section>
+
+</main>
+
+<!--Linking Swipper Script-->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!--Linking Custom Script-->
+
+<!--CAMBIO EN LA DIRECCION DE JS
+<script src="script.js"></script>
+-->
+<script src="assets/scripts/main.js"></script>
+
+
+</body>
+</html>
