@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar Contraseña</title>
+  <link rel="stylesheet" href="assets/styles/stylesForgot.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Paso 1: Ingresar correo -->
+    <div id="step1">
+      <h2>¿Olvidaste tu contraseña?</h2>
+      <p>Ingresa tu correo electrónico para restablecer tu contraseña</p>
+      <input type="email" placeholder="Correo electrónico" id="emailInput" required>
+      <button id="resetBtn" class="signup-btn">Restablecer contraseña</button>
+    </div>
+
+    <!-- Paso 2: Ingresar código -->
+    <div id="step2" style="display: none;">
+      <h2>Revisa tu correo</h2>
+      <p>Ingresa el código de verificación</p>
+      <div class="code-inputs">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+      </div>
+      <button id="verifyBtn" class="signup-btn">Verificar código y continuar</button>
+
+      <p class="login-link"><a href="#">¿No recibiste el correo? Reenviar</a></p>
+    </div>
+
+  </div>
+
+  <script>
+    const resetBtn = document.getElementById("resetBtn");
+    const step1 = document.getElementById("step1");
+    const step2 = document.getElementById("step2");
+
+    resetBtn.addEventListener("click", () => {
+      const emailInput = document.getElementById("emailInput");
+      if (emailInput.checkValidity()) {
+        step1.style.display = "none";
+        step2.style.display = "block";
+      } else {
+        emailInput.reportValidity();
+      }
+    });
+
+    // Nuevo: redirigir al hacer clic en "Verificar código y continuar"
+    const verifyBtn = document.getElementById("verifyBtn");
+    verifyBtn.addEventListener("click", () => {
+      // Aquí podrías validar el código si lo deseas
+      window.location.href = "app.html"; // redirige a app.html
+    });
+  </script>
+
+</body>
+
+</html>
