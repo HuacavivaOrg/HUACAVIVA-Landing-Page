@@ -1,0 +1,255 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 70px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.75);
+  width: 350px;
+  text-align: center;
+}
+
+input {
+  width: 95%;
+  padding: 10px;
+  margin: 2px;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+
+.signup-btn {
+  background: #EBB44D;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 100px;
+  font-weight: bold;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.separator hr {
+  flex: 1;
+  border: none;
+  border-top: 3px solid #ccc;
+}
+
+.separator span {
+  margin: 0 10px;
+  color: black;
+}
+
+.third-party button {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/*BOTONES de acceso diferente*/
+.google-btn {
+  background: #db4437;
+  color: white;
+}
+
+.apple-btn {
+  background: #000;
+  color: white;
+}
+
+/*INICIAR SESION CON CUENTA YA REGISTRADA*/
+.login-link {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+/*Seccion contrasenia*/
+.contrasenia {
+  display: flex;
+  align-items: center;
+}
+
+.contrasenia input {
+  flex: 1;
+}
+
+.contrasenia button {
+  margin-left: 5px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+
+/*MODAL DE GOOGLE*/
+.google-style {
+  font-family: 'Inter', sans-serif;
+  padding: 30px;
+  width: 350px;
+  text-align: left;
+}
+
+.google-logo {
+  display: block;
+  margin: 0 auto 10px;
+  width: 92px;
+}
+
+.google-style h3 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+}
+
+.google-style p {
+  font-size: 14px;
+  color: #555;
+}
+
+.account-option {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #f9f9f9;
+}
+
+.account-option:hover {
+  background: #e6e6e6;
+}
+
+.consent-text {
+  font-size: 12px;
+  margin-top: 15px;
+  color: #666;
+}
+
+.links {
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.links a {
+  color: #1a73e8;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.modal {
+  display: none;
+  /* oculto por defecto */
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+
+  /* Esto centra el modal */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content.google-style {
+  background: white;
+  /* fondo blanco */
+  border: 2px solid #ccc;
+  /* borde gris claro */
+  border-radius: 10px;
+  padding: 30px;
+  width: 350px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  text-align: left;
+}
+
+
+/*Para el caso de Apple*/
+.apple-style {
+  font-family: 'Inter', sans-serif;
+  padding: 30px;
+  width: 350px;
+  text-align: left;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.apple-style h3 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+}
+
+.apple-style p {
+  font-size: 14px;
+  color: #555;
+}
+
+.apple-options {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.apple-options label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.continue-apple {
+  background: #000;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.close-apple {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+.apple-options input[type="radio"] {
+  accent-color: black;
+  /* color del círculo activo */
+  margin: 0;
+  /* elimina espacio extra */
+  transform: scale(1.1);
+  /* opcional: agranda ligeramente el círculo */
+  position: relative;
+  left: 150px;
+  top: 20px;
+}
