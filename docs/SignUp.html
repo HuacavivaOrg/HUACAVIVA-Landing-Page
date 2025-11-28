@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Cuenta</title>
+  <link rel="stylesheet" href="assets/styles/stylesSignup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <!--<script src="assets/scripts/modalGoogle.js"></script>-->
+
+</head>
+
+<body>
+  <div class="container">
+
+    <h2>Crear Cuenta</h2>
+
+    <form class="formulario formulario-register">
+      <input type="text" placeholder="Nombre" id="nombre" required>
+      <input type="email" placeholder="Correo electrónico" id="correo" required>
+      <div class="contrasenia">
+        <input type="password" placeholder="Contraseña" id="clave" required>
+        <button type="button" id="toggleClave">👁️</button>
+      </div>
+      <button type="submit" class="signup-btn">Registrarse</button>
+    </form>
+
+    <script>
+      const claveInput = document.getElementById("clave");
+      const toggleBtn = document.getElementById("toggleClave");
+
+      toggleBtn.addEventListener("click", () => {
+        if (claveInput.type === "password") {
+          claveInput.type = "text";
+          toggleBtn.textContent = "❌";
+        } else {
+          claveInput.type = "password";
+          toggleBtn.textContent = "👁️";
+        }
+      });
+    </script>
+
+
+    <div class="separator">
+      <hr><span>O</span>
+      <hr>
+    </div>
+
+    <p>Continuar con</p>
+    <div class="third-party">
+      <button id="openGoogleModal" type="button" class="google-btn">Google</button>
+      <button type="button" class="apple-btn">Apple</button>
+    </div>
+
+
+    <p class="login-link">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+
+
+  </div>
+
+
+
+
+
+  <div id="googleModal" class="modal">
+    <div class="modal-content google-style">
+      <span class="close">&times;</span>
+      <img src="https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google"
+        class="google-logo">
+      <h3>Elige una cuenta</h3>
+      <p>para continuar en <strong>HUACAVIVA</strong></p>
+
+      <div class="account-option">email@gmail.com</div>
+      <div class="account-option">email2@gmail.com</div>
+      <div class="account-option">Usar otra cuenta</div>
+
+      <p class="consent-text">
+        Al continuar, Google compartirá tu nombre, correo electrónico, preferencia de idioma y foto de perfil con
+        <strong>HUACAVIVA</strong>.
+      </p>
+
+      <div class="links">
+        <a href="#">Política de privacidad</a> · <a href="#">Términos del servicio</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="appleModal" class="modal">
+    <div class="modal-content apple-style">
+      <span class="close-apple">&times;</span>
+      <h3>Iniciar sesión con Apple</h3>
+      <p>Usa tu Apple ID para continuar en <strong>HUACAVIVA</strong></p>
+
+      <div class="account-option">username@icloud.com</div>
+
+      <div class="apple-options">
+        <label>
+          <input type="radio" name="apple-email" value="share">
+          Compartir mi correo
+        </label>
+        <label>
+          <input type="radio" name="apple-email" value="hide" checked>
+          Ocultar mi correo
+        </label>
+      </div>
+
+      <button class="continue-apple">Continuar</button>
+
+      <p class="consent-text">
+        Al continuar, Apple compartirá tu nombre y correo con <strong>HUACAVIVA</strong> según tu selección.
+      </p>
+
+      <div class="links">
+        <a href="#">Política de privacidad</a> · <a href="#">Términos del servicio</a>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="assets/scripts/modalGoogle.js"></script>
+  <script src="assets/scripts/modalApple.js"></script>
+  <script src="assets/scripts/authRedirect.js"></script>
+
+</body>
+
+</html>

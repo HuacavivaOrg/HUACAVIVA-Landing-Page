@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuacaViva Web App</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/HUACAVIVA-Landing-Page/favicon.ico">
+    <link rel="shortcut icon" href="/HUACAVIVA-Landing-Page/favicon.ico">
+    <link rel="apple-touch-icon" href="/HUACAVIVA-Landing-Page/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Miniver&family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Linking Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="stylesheet" href="assets/styles/app.css">
+</head>
+
+<body>
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar section-content">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/Logo HUACAVIVA.png" class="logo-icon" alt="HuacaViva Logo">
+            </a>
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-tab="explore">Explorar</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#routes" class="nav-link" data-tab="routes" data-i18n="routes">
+                        <i class="fa-solid fa-route"></i> Rutas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#missions" class="nav-link" data-tab="missions" data-i18n="missions">
+                        <i class="fa-solid fa-flag-checkered"></i> Misiones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#gamification" class="nav-link" data-tab="gamification" data-i18n="gamification">
+                        <i class="fa-solid fa-trophy"></i> Gamificación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#community" class="nav-link" data-tab="community" data-i18n="community">
+                        <i class="fa-solid fa-users"></i> Comunidad
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#profile" class="nav-link" data-tab="profile" data-i18n="profile">
+                        <i class="fa-solid fa-user"></i> Perfil
+                    </a>
+                </li>
+            </ul>
+
+            <button id="menu-open-button" class="fas fa-bars"></button>
+        </nav>
+    </header>
+
+    <main class="app-container section-content">
+
+        <!-- Tab: Explorar Huacas -->
+        <section id="explore" class="tab-content active">
+            <div class="explore-header">
+                <h2 class="section-title" style="font-size: 2rem; margin-bottom: 20px;" data-i18n="exploreTitle">Explora
+                    el Pasado</h2>
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="huaca-search" placeholder="Buscar huaca por nombre, distrito o cultura...">
+                </div>
+                <div class="filters">
+                    <select id="filter-district">
+                        <option value="">Todos los distritos</option>
+                        <option value="Miraflores">Miraflores</option>
+                        <option value="San Isidro">San Isidro</option>
+                        <option value="Lima">Lima</option>
+                        <option value="Lurín">Lurín</option>
+                        <option value="Pueblo Libre">Pueblo Libre</option>
+                    </select>
+                    <select id="filter-type">
+                        <option value="">Todos los tipos</option>
+                        <option value="Templo">Templo</option>
+                        <option value="Administrativo">Administrativo</option>
+                        <option value="Complejo">Complejo Arqueológico</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="explore-layout">
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+                <div class="huaca-list-container">
+                    <div id="huaca-list" class="huaca-list">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Huaca Detail Modal -->
+            <div id="huaca-detail-modal" class="modal hidden">
+                <div class="modal-content modal-large">
+                    <span class="close-modal">&times;</span>
+                    <div id="huaca-detail-content">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Rutas -->
+        <section id="routes" class="tab-content">
+            <h2 class="section-title" data-i18n="routesTitle">Rutas Culturales</h2>
+
+            <div class="route-options"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 40px;">
+                <div class="route-option-card"
+                    style="background: var(--bg-card); border: 2px solid var(--accent-color); padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2); transition: all 0.3s ease; cursor: pointer;"
+                    onmouseenter="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(212, 175, 55, 0.3)'"
+                    onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(212, 175, 55, 0.2)'">
+                    <div style="font-size: 3rem; margin-bottom: 15px; text-align: center;">✨</div>
+                    <h3 data-i18n="autoRoute"
+                        style="margin: 0 0 10px 0; font-size: 1.4rem; text-align: center; color: var(--primary-color);">
+                        Ruta Inteligente</h3>
+                    <p data-i18n="autoRouteDesc"
+                        style="text-align: center; color: var(--text-medium); margin-bottom: 20px;">Genera una ruta
+                        basada en tus intereses.</p>
+                    <button class="button-primary" id="auto-route-btn" data-i18n="generateRoute"
+                        style="width: 100%; padding: 12px;">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Generar Ruta
+                    </button>
+                </div>
+                <div class="route-option-card"
+                    style="background: var(--bg-card); border: 2px solid var(--primary-color); padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(43, 108, 176, 0.15); transition: all 0.3s ease; cursor: pointer;"
+                    onmouseenter="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(43, 108, 176, 0.25)'"
+                    onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(43, 108, 176, 0.15)'">
+                    <div style="font-size: 3rem; margin-bottom: 15px; text-align: center;">✏️</div>
+                    <h3 data-i18n="manualRoute"
+                        style="margin: 0 0 10px 0; font-size: 1.4rem; text-align: center; color: var(--primary-color);">
+                        Ruta Personalizada</h3>
+                    <p data-i18n="manualRouteDesc"
+                        style="text-align: center; color: var(--text-medium); margin-bottom: 20px;">Crea tu propia ruta
+                        seleccionando huacas.</p>
+                    <button class="button-secondary" id="manual-route-btn" data-i18n="createRoute"
+                        style="width: 100%; padding: 12px;">
+                        <i class="fa-solid fa-pen"></i> Crear Nueva Ruta
+                    </button>
+                </div>
+            </div>
+
+            <div class="my-routes-section">
+                <div class="saved-routes">
+                    <h3 data-i18n="myRoutes">Mis Rutas Guardadas</h3>
+                    <div id="saved-routes-list" class="routes-grid">
+                    </div>
+                </div>
+        </section>
+
+        <!-- Tab: Misiones & Expediciones -->
+        <section id="missions" class="tab-content">
+            <h2 class="section-title" data-i18n="missionsTitle">Misiones y Expediciones</h2>
+
+            <!-- Active Expeditions -->
+            <div class="active-expeditions">
+                <h3 style="margin-bottom: 20px; color: var(--primary-color);" data-i18n="activeExpeditions">Expediciones
+                    Activas</h3>
+                <div id="active-expeditions-list">
+                </div>
+            </div>
+
+            <!-- Expedition Catalog -->
+            <div class="available-expeditions">
+                <h3 style="margin-bottom: 20px; color: var(--primary-color);">Catálogo de Expediciones</h3>
+                <div id="expeditions-list" class="expeditions-grid">
+                </div>
+            </div>
+
+            <div class="ra-section" style="margin-top: 50px;">
+                <h3 style="margin-bottom: 20px; color: var(--primary-color);" data-i18n="arExperiences">Experiencias AR
+                    Destacadas</h3>
+                <div class="ra-experiences-grid">
+                    <div class="ra-card">
+                        <img src="assets/images/Huaca1.png" alt="AR Experience" class="ra-card-img">
+                        <div class="ra-card-content">
+                            <i class="fa-solid fa-vr-cardboard"
+                                style="font-size: 2rem; color: var(--accent-color); margin-bottom: 10px;"></i>
+                            <h4>Huaca Pucllana AR</h4>
+                            <p style="margin-bottom: 15px; color: var(--text-medium);">Explora la Huaca Pucllana en 3D
+                                con realidad aumentada.</p>
+                            <button class="button-primary" onclick="window.location.href='ar.html?huaca=pucllana'"
+                                data-i18n="startAR">Iniciar AR</button>
+                        </div>
+                    </div>
+                    <div class="ra-card">
+                        <img src="assets/images/Huaca4.png" alt="AR Experience" class="ra-card-img">
+                        <div class="ra-card-content">
+                            <i class="fa-solid fa-cube"
+                                style="font-size: 2rem; color: var(--accent-color); margin-bottom: 10px;"></i>
+                            <h4>Templo Pachacamac AR</h4>
+                            <p style="margin-bottom: 15px; color: var(--text-medium);">Descubre el Templo de Pachacamac
+                                con guías interactivas.</p>
+                            <button class="button-secondary" onclick="alert('Próximamente disponible')"
+                                data-i18n="comingSoon">Próximamente</button>
+                        </div>
+                    </div>
+                    <div class="ra-card">
+                        <img src="assets/images/Huaca3.png" alt="AR Experience" class="ra-card-img">
+                        <div class="ra-card-content">
+                            <i class="fa-solid fa-location-dot"
+                                style="font-size: 2rem; color: var(--accent-color); margin-bottom: 10px;"></i>
+                            <h4>Mateo Salado 360°</h4>
+                            <p style="margin-bottom: 15px; color: var(--text-medium);">Recorre el complejo en una
+                                experiencia inmersiva 360°.</p>
+                            <button class="button-secondary" onclick="alert('Próximamente disponible')"
+                                data-i18n="comingSoon">Próximamente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Tab: Gamificación -->
+        <section id="gamification" class="tab-content">
+            <h2 class="section-title" data-i18n="gamificationTitle">Mi Progreso y Logros</h2>
+
+            <!-- Grid principal dos columnas -->
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; margin-top: 30px;">
+
+                <!-- ========== COLUMNA IZQUIERDA ========== -->
+                <div style="display: flex; flex-direction: column; gap: 25px;">
+
+                    <!-- 1. RESUMEN DE PROGRESO (US13) -->
+                    <div
+                        style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); padding: 30px; border-radius: 16px; box-shadow: var(--shadow-md); color: white;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 25px;">
+                            <div>
+                                <h3 style="margin: 0 0 8px 0; font-size: 1.8rem; font-weight: 700;">
+                                    <i class="fa-solid fa-crown"></i> <span id="user-level-name">Explorador
+                                        Experto</span>
+                                </h3>
+                                <p style="margin: 0; opacity: 0.9;">Nivel <span id="user-current-level">5</span></p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="ranking">Ranking</div>
+                                <div style="font-size: 1.8rem; font-weight: 700;">#<span
+                                        id="user-rank-position">147</span>
+                                </div>
+                                <div style="font-size: 0.75rem; opacity: 0.8;"><span data-i18n="of">de</span> <span
+                                        id="total-explorers">3,240</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Barra de progreso XP -->
+                        <div>
+                            <div
+                                style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem;">
+                                <span><span id="current-xp">1,250</span> XP</span>
+                                <span><span id="next-level-xp">1,500</span> <span data-i18n="xpForNextLevel">XP para
+                                        nivel 6</span></span>
+                            </div>
+                            <div
+                                style="background: rgba(255,255,255,0.2); border-radius: 12px; height: 14px; overflow: hidden;">
+                                <div id="xp-progress-bar"
+                                    style="background: white; height: 100%; width: 83%; transition: width 0.5s ease; box-shadow: 0 0 10px rgba(255,255,255,0.5);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Estadísticas rápidas -->
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 25px;">
+                            <div
+                                style="text-align: center; background: rgba(255,255,255,0.15); padding: 15px; border-radius: 12px;">
+                                <div style="font-size: 1.8rem; font-weight: 700;"><span
+                                        id="stat-huacas-visited">12</span></div>
+                                <div style="font-size: 0.8rem; opacity: 0.9;" data-i18n="huacasVisited">Huacas Visitadas
+                                </div>
+                            </div>
+                            <div
+                                style="text-align: center; background: rgba(255,255,255,0.15); padding: 15px; border-radius: 12px;">
+                                <div style="font-size: 1.8rem; font-weight: 700;"><span id="stat-expeditions">4</span>
+                                </div>
+                                <div style="font-size: 0.8rem; opacity: 0.9;" data-i18n="expeditions">Expediciones</div>
+                            </div>
+                            <div
+                                style="text-align: center; background: rgba(255,255,255,0.15); padding: 15px; border-radius: 12px;">
+                                <div style="font-size: 1.8rem; font-weight: 700;"><span id="stat-badges">8</span>
+                                </div>
+                                <div style="font-size: 0.8rem; opacity: 0.9;" data-i18n="badges">Insignias</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1.5 TRIVIA DIARIA (US12) -->
+                    <div
+                        style="background: var(--bg-card); padding: 25px; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                        <h3
+                            style="margin: 0 0 20px 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px;">
+                            <i class="fa-solid fa-brain"></i> <span data-i18n="trivia">Trivia Diaria</span>
+                        </h3>
+                        <div id="trivia-container">
+                            <!-- Trivia injected here -->
+                        </div>
+                    </div>
+
+                    <!-- 2. VITRINA DE INSIGNIAS DESTACADAS (US11) -->
+                    <div
+                        style="background: var(--bg-card); padding: 25px; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3
+                                style="margin: 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px;">
+                                <i class="fa-solid fa-award"></i> <span data-i18n="badgesShowcase">Vitrina de
+                                    Insignias</span>
+                            </h3>
+                            <button class="button-secondary" onclick="openAllBadgesModal()"
+                                style="padding: 6px 14px; font-size: 0.85rem;">
+                                <i class="fa-solid fa-eye"></i> <span data-i18n="viewAll">Ver Todas</span>
+                            </button>
+                        </div>
+
+                        <div id="featured-badges-showcase"
+                            style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px;">
+                        </div>
+
+                        <p
+                            style="margin: 20px 0 0 0; font-size: 0.85rem; color: var(--text-medium); text-align: center;">
+                            <i class="fa-solid fa-info-circle"></i> <span data-i18n="customizeShowcase">Personaliza tu
+                                vitrina para mostrar tus mejores
+                                logros</span>
+                        </p>
+                    </div>
+
+                    <!-- 3. CHECK-INS RECIENTES (US08) -->
+                    <div
+                        style="background: var(--bg-card); padding: 25px; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3
+                                style="margin: 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px;">
+                                <i class="fa-solid fa-location-pin"></i> <span data-i18n="recentVisits">Visitas
+                                    Recientes</span>
+                            </h3>
+                        </div>
+
+                        <div id="recent-checkins-list" style="display: flex; flex-direction: column; gap: 12px;">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ========== COLUMNA DERECHA ========== -->
+                <div style="display: flex; flex-direction: column; gap: 25px;">
+
+                    <!-- 4. RANKING DE EXPLORADORES (US09) -->
+                    <div
+                        style="background: var(--bg-card); padding: 25px; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                        <h3
+                            style="margin: 0 0 20px 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px;">
+                            <i class="fa-solid fa-ranking-star"></i> <span data-i18n="explorersRanking">Ranking de
+                                Exploradores</span>
+                        </h3>
+
+                        <!-- Tabs de filtro -->
+                        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                            <button class="filter-chip active" onclick="filterRanking('global')" data-filter="global"
+                                style="flex: 1; padding: 8px; font-size: 0.85rem;" data-i18n="global">Global</button>
+                            <button class="filter-chip" onclick="filterRanking('weekly')" data-filter="weekly"
+                                style="flex: 1; padding: 8px; font-size: 0.85rem;" data-i18n="weekly">Semanal</button>
+                            <button class="filter-chip" onclick="filterRanking('monthly')" data-filter="monthly"
+                                style="flex: 1; padding: 8px; font-size: 0.85rem;" data-i18n="monthly">Mensual</button>
+                        </div>
+
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid var(--bg-light);">
+                                    <th
+                                        style="padding: 10px; text-align: left; color: var(--text-medium); font-size: 0.85rem;">
+                                        #</th>
+                                    <th style="padding: 10px; text-align: left; color: var(--text-medium); font-size: 0.85rem;"
+                                        data-i18n="explorer">
+                                        Explorador</th>
+                                    <th
+                                        style="padding: 10px; text-align: right; color: var(--text-medium); font-size: 0.85rem;">
+                                        XP</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ranking-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 5. EXPEDICIONES COMPLETADAS (US07) -->
+                    <div
+                        style="background: var(--bg-card); padding: 25px; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                        <h3
+                            style="margin: 0 0 20px 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px;">
+                            <i class="fa-solid fa-flag-checkered"></i> <span
+                                data-i18n="completedExpeditions">Expediciones Completadas</span>
+                        </h3>
+
+                        <div id="completed-expeditions-list" style="display: flex; flex-direction: column; gap: 15px;">
+                        </div>
+                    </div>
+
+                    <!-- 5.5 TIENDA DE BENEFICIOS (US15) -->
+                    <div
+                        style="background: var(--bg-card); padding: 25px; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                        <h3
+                            style="margin: 0 0 20px 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px;">
+                            <i class="fa-solid fa-store"></i> <span data-i18n="shop">Tienda de Beneficios</span>
+                        </h3>
+
+                        <div class="shop-tabs" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                            <button class="filter-chip active" onclick="renderShop('available')"
+                                data-i18n="available">Disponibles</button>
+                            <button class="filter-chip" onclick="renderShop('redeemed')"
+                                data-i18n="redeemed">Canjeados</button>
+                        </div>
+
+                        <div id="rewards-list">
+                        </div>
+                    </div>
+
+                    <!-- 6. RECONOCIMIENTO COMUNITARIO (US16) -->
+                    <div
+                        style="background: linear-gradient(135deg, #d4af37, #ffd700); padding: 25px; border-radius: 16px; box-shadow: var(--shadow-md); color: white;">
+                        <h3 style="margin: 0 0 20px 0; display: flex; align-items: center; gap: 10px;">
+                            <i class="fa-solid fa-star"></i> <span data-i18n="communityRecognition">Reconocimiento
+                                Comunitario</span>
+                        </h3>
+
+                        <div id="community-recognition" style="display: flex; flex-direction: column; gap: 15px;">
+                        </div>
+
+                        <div
+                            style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.2); border-radius: 12px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: 700;"><span id="community-contributions">3</span>
+                            </div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="approvedContributions">
+                                Contribuciones Aprobadas</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Tab: Comunidad -->
+        <section id="community" class="tab-content">
+            <h2 class="section-title" data-i18n="communityTitle">Comunidad HuacaViva</h2>
+
+            <div class="community-tabs-nav"
+                style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
+                <button class="nav-link active" onclick="switchCommunityTab('feed')" data-i18n="feed">Activity
+                    Feed</button>
+            </div>
+
+            <div id="community-feed-section">
+                <div class="community-layout">
+                    <!-- Left Column: Feed -->
+                    <div class="community-feed-column">
+                        <div class="community-actions" style="margin-bottom: 20px;">
+                            <button class="button-primary" id="new-post-btn" style="width: 100%;"
+                                data-i18n="shareExperience">
+                                <i class="fa-solid fa-pen-to-square"></i> Compartir Experiencia
+                            </button>
+                        </div>
+
+                        <div class="feed-filters" style="margin-bottom: 20px;">
+                            <button class="filter-chip active" onclick="filterCommunity('all')"
+                                data-i18n="all">Todo</button>
+                            <button class="filter-chip" onclick="filterCommunity('Relato')"
+                                data-i18n="stories">Relatos</button>
+                            <button class="filter-chip" onclick="filterCommunity('Foto')"
+                                data-i18n="photos">Fotos</button>
+                            <button class="filter-chip" onclick="filterCommunity('Logro')"
+                                data-i18n="achievements_type">Logros</button>
+                        </div>
+
+                        <div id="community-feed" class="community-feed">
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Leaderboard -->
+                    <div class="community-sidebar">
+                        <div class="leaderboard-panel">
+                            <h3 data-i18n="leaderboard">Top Exploradores</h3>
+                            <table class="leaderboard-table" style="margin-top: 15px;">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Usuario</th>
+                                        <th>XP</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="community-leaderboard-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Perfil -->
+        <section id="profile" class="tab-content">
+            <h2 class="section-title" data-i18n="myProfile">Mi Perfil</h2>
+
+            <div class="profile-header">
+                <div class="profile-pic-large">
+                    <img id="profile-pic-display" src="assets/images/Avatar Default.png" alt="Profile">
+                    <button class="edit-avatar-btn" id="edit-profile-btn"><i class="fa-solid fa-pen"></i></button>
+                </div>
+                <div class="profile-info">
+                    <h2 id="profile-name-display">Usuario</h2>
+                    <p id="profile-bio-display">Explorador de la historia</p>
+                    <div class="level-badge">Nivel 5: Curaca</div>
+                </div>
+                <div style="position: absolute; top: 0; right: 0; display: flex; gap: 10px;">
+                    <button id="language-toggle" class="icon-btn" onclick="toggleLanguage()"
+                        title="Cambiar Idioma">ES</button>
+                    <button id="dark-mode-toggle" class="icon-btn" title="Modo Oscuro"><i
+                            class="fa-regular fa-moon"></i></button>
+                </div>
+            </div>
+
+            <div class="profile-settings">
+                <h3 data-i18n="preferences">Preferencias</h3>
+                <div class="setting-item"
+                    style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                    <label>Notificaciones de RA cercana</label>
+                    <input type="checkbox" id="pref-notifications" checked>
+                </div>
+                <div class="setting-item"
+                    style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                    <label>Perfil Público</label>
+                    <input type="checkbox" id="pref-public" checked>
+                </div>
+                <div class="setting-item"
+                    style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                    <label><i class="fa-solid fa-moon"></i> Modo Oscuro</label>
+                    <button class="toggle-btn" id="dark-mode-toggle-btn" onclick="toggleDarkMode()"
+                        style="padding: 8px 20px; border-radius: 20px; border: 2px solid var(--primary-color); background: transparent; color: var(--primary-color); cursor: pointer; font-weight: 600; transition: all 0.3s;">Activar</button>
+                </div>
+                <div class="setting-item" style="display: flex; justify-content: space-between;">
+                    <label><i class="fa-solid fa-language"></i> Idioma</label>
+                    <select id="language-selector" onchange="changeLanguage()"
+                        style="padding: 8px 15px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); background: var(--bg-card); color: var(--text-dark); cursor: pointer;">
+                        <option value="es">Español (ES)</option>
+                        <option value="en">English (EN)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="profile-favorites">
+                <h3 style="margin-bottom: 20px; color: var(--primary-color);" data-i18n="myFavoriteHuacas">Mis Huacas
+                    Favoritas</h3>
+                <div id="favorite-huacas-list" class="huaca-list">
+                </div>
+            </div>
+
+            <div class="logout-section" style="text-align: center; margin-top: 40px;">
+                <button class="button-danger" id="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    Cerrar Sesión</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modals -->
+
+    <div id="manual-route-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Crear Ruta Manual</h2>
+            <form id="manual-route-form" onsubmit="return false;">
+                <input type="text" id="manual-route-name" class="form-input" placeholder="Nombre de la ruta" required>
+                <p style="margin-bottom: 10px; font-weight: 500;">Selecciona las huacas:</p>
+                <div class="huaca-selection-list" id="manual-route-huaca-list">
+                </div>
+                <button type="submit" class="button-primary" style="width: 100%; margin-top: 20px;">Guardar
+                    Ruta</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="route-detail-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="route-detail-content"></div>
+        </div>
+    </div>
+
+    <div id="new-post-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Compartir Experiencia</h2>
+            <form id="new-post-form" onsubmit="return false;">
+                <select id="post-huaca" class="form-input" required>
+                    <option value="">Selecciona una Huaca</option>
+                </select>
+                <select id="post-type" class="form-input" required>
+                    <option value="Relato">Relato</option>
+                    <option value="Foto">Foto</option>
+                </select>
+                <textarea id="post-content" class="form-input" placeholder="Escribe tu experiencia..." required
+                    style="height: 120px; resize: vertical;"></textarea>
+                <button type="submit" class="button-primary" style="width: 100%;">Publicar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Editar Perfil</h2>
+            <form id="edit-profile-form" onsubmit="return false;">
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Nombre</label>
+                    <input type="text" id="edit-name" class="form-input" placeholder="Tu nombre" required>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Biografía</label>
+                    <input type="text" id="edit-bio" class="form-input" placeholder="Tu bio (ej. Explorador desde...)"
+                        required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Avatar</label>
+                    <select id="edit-avatar" class="form-input">
+                        <option value="assets/images/Testimonio Sofia.png">Avatar 1 (Sofía)</option>
+                        <option value="assets/images/Testimonio Walter.png">Avatar 2 (Walter)</option>
+                        <option value="assets/images/Testimonio Ana.png">Avatar 3 (Ana)</option>
+                        <option value="assets/images/Testimonio Andres.png">Avatar 4 (Andrés)</option>
+                    </select>
+                </div>
+                <button type="submit" class="button-primary" style="width: 100%;">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/scripts/app.js"></script>
+    <script src="assets/scripts/authRedirect.js"></script>
+</body>
+
+</html>
