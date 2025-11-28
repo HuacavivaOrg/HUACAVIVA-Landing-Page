@@ -1,0 +1,1247 @@
+/* App Specific Styles */
+
+.app-container {
+    padding-top: calc(var(--header-height) + 20px);
+    min-height: 100vh;
+    padding-bottom: 50px;
+    background-color: var(--bg-body);
+}
+
+/* Tabs */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Explore Header */
+.explore-header {
+    margin-bottom: 40px;
+    text-align: center;
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--border-radius-l);
+    box-shadow: var(--shadow-sm);
+}
+
+.search-bar {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 16px 16px 16px 50px;
+    border-radius: var(--border-radius-pill);
+    border: 2px solid transparent;
+    background: var(--bg-secondary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: var(--text-dark);
+}
+
+.search-bar input:focus {
+    outline: none;
+    background: var(--bg-card);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(26, 75, 110, 0.1);
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filters select {
+    padding: 10px 20px;
+    border-radius: var(--border-radius-pill);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--bg-card);
+    color: var(--text-medium);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.filters select:hover {
+    border-color: var(--primary-color);
+}
+
+/* Explore Layout */
+.explore-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+    height: calc(100vh - 250px);
+    min-height: 500px;
+}
+
+@media (max-width: 900px) {
+    .explore-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}
+
+.map-container {
+    height: 100%;
+    min-height: 400px;
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-m);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+.huaca-list-container {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.huaca-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.huaca-card {
+    display: flex;
+    background: var(--bg-card);
+    border-radius: var(--border-radius-m);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.huaca-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.huaca-card img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+
+.huaca-card-content {
+    padding: 15px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.huaca-card h3 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.huaca-card .district {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.huaca-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.btn-view-details {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.btn-favorite {
+    color: var(--text-light);
+    font-size: 1.2rem;
+    transition: color 0.2s;
+}
+
+.btn-favorite:hover,
+.btn-favorite.active {
+    color: var(--danger-color);
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: var(--border-radius-l);
+    max-width: 800px;
+    width: 90%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal:not(.hidden) .modal-content {
+    transform: scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: var(--danger-color);
+}
+
+/* Huaca Detail Styles */
+.huaca-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.modal-huaca-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: var(--border-radius-m);
+    margin-bottom: 25px;
+    box-shadow: var(--shadow-md);
+}
+
+.detail-tabs {
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.detail-tabs .tab-btn {
+    background: none;
+    border: none;
+    padding: 10px 5px;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    color: var(--text-light);
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.detail-tabs .tab-btn:hover {
+    color: var(--primary-color);
+}
+
+.detail-tabs .tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--accent-color);
+}
+
+.detail-tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.detail-tab-content.active {
+    display: block;
+}
+
+/* VR Placeholder */
+.ra-placeholder {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, rgba(26, 75, 110, 0.05), rgba(212, 175, 55, 0.05));
+    border: 2px dashed rgba(26, 75, 110, 0.2);
+    border-radius: var(--border-radius-m);
+    margin-top: 20px;
+}
+
+.ra-placeholder i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.ra-placeholder h4 {
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+}
+
+/* Routes */
+.routes-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.create-route-panel,
+.manual-route-panel {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--border-radius-m);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.trivia-card {
+    background: white;
+    padding: 25px;
+    border-radius: var(--border-radius-m);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.trivia-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.trivia-option {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-s);
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.trivia-option:hover {
+    background: var(--hover-primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+body.dark-mode .trivia-card {
+    background: var(--card-bg-dark);
+    border-color: var(--border-color-dark);
+}
+
+body.dark-mode .trivia-option {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color-dark);
+    color: var(--text-light);
+}
+
+body.dark-mode .trivia-option:hover {
+    background: var(--primary-color);
+}
+
+.routes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.route-card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--border-radius-m);
+    box-shadow: var(--shadow-sm);
+    border-left: 5px solid var(--accent-color);
+    transition: transform 0.2s;
+}
+
+.route-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Expeditions Catalog */
+.expeditions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.expedition-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius-m);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.expedition-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.expedition-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.expedition-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.expedition-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.expedition-content p {
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    margin-bottom: 15px;
+}
+
+.expedition-progress {
+    margin-top: 10px;
+}
+
+.expedition-progress-text {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+/* Active Expeditions specific */
+.active-expeditions {
+    margin-top: 30px;
+}
+
+.active-expeditions .expedition-card {
+    border-left: 5px solid var(--success-color);
+}
+
+body.dark-mode .expedition-card {
+    background: var(--bg-card);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+}
+
+body.dark-mode .expedition-card h3 {
+    color: var(--accent-color);
+}
+
+body.dark-mode .expedition-card p {
+    color: var(--text-medium);
+}
+
+body.dark-mode .expedition-card .expedition-progress-text {
+    color: var(--text-light);
+}
+
+body.dark-mode .active-expeditions .expedition-card {
+    background: rgba(212, 175, 55, 0.1);
+    border-left-color: var(--accent-color);
+}
+
+body.dark-mode .active-expeditions .expedition-card h3 {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+body.dark-mode .active-expeditions .expedition-card p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Gamification */
+.gamification-dashboard {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 30px;
+}
+
+.stats-panel,
+.badges-panel,
+.leaderboard-panel,
+.trivia-section,
+.rewards-shop {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--border-radius-m);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 30px;
+}
+
+.xp-bar-container {
+    background: var(--bg-secondary);
+    height: 12px;
+    border-radius: 10px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.xp-bar {
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s ease;
+}
+
+.badge {
+    width: 70px;
+    height: 70px;
+    background: #eee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #aaa;
+    position: relative;
+    transition: transform 0.2s;
+    cursor: help;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+}
+
+.badge.unlocked {
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    color: white;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.badge::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 100;
+}
+
+.badge:hover::after {
+    opacity: 1;
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 15px;
+    justify-items: center;
+}
+
+/* AR Experiences Gallery */
+.ra-experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.ra-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius-m);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.ra-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.ra-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.ra-card-content {
+    padding: 25px;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ra-card-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.ra-card-content p {
+    flex: 1;
+}
+
+/* Community */
+.community-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+@media (max-width: 1200px) {
+    .community-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .community-sidebar {
+        display: none;
+    }
+}
+
+.community-feed-column {
+    max-width: 100%;
+}
+
+.community-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + 20px);
+}
+
+.filter-chip {
+    padding: 8px 16px;
+    border-radius: var(--border-radius-pill);
+    border: 2px solid transparent;
+    background: var(--bg-secondary);
+    color: var(--text-medium);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-chip:hover {
+    background: var(--bg-card);
+    border-color: var(--primary-color);
+}
+
+.filter-chip.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.feed-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.community-feed-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.post-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius-m);
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.post-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-color);
+}
+
+.post-actions {
+    display: flex;
+    gap: 25px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.post-action {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-medium);
+    transition: color 0.2s;
+}
+
+.post-action:hover {
+    color: var(--primary-color);
+}
+
+.post-action.liked {
+    color: var(--danger-color);
+}
+
+/* Post Comments */
+.post-comments {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.comment-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding: 10px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.comment-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-content strong {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+.comment-content p {
+    margin: 5px 0 0 0;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+}
+
+.comment-content small {
+    color: var(--text-light);
+    font-size: 0.75rem;
+}
+
+.add-comment-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.add-comment-form input {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.85rem;
+}
+
+.add-comment-form button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Badge Achievement Card */
+.post-badge {
+    margin: 15px 0;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(26, 75, 110, 0.1));
+    border-radius: var(--border-radius-m);
+    border-left: 4px solid var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.post-badge i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+}
+
+.post-badge-info h4 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.post-badge-info p {
+    color: var(--text-medium);
+    font-size: 0.85rem;
+}
+
+/* Profile */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: var(--border-radius-l);
+    box-shadow: var(--shadow-md);
+}
+
+.profile-pic-large {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.profile-pic-large img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--accent-color);
+    box-shadow: var(--shadow-md);
+}
+
+.edit-avatar-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: var(--primary-color);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.edit-avatar-btn:hover {
+    transform: scale(1.1);
+    background: var(--accent-color);
+}
+
+.profile-info h3 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+/* Form Inputs */
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: var(--border-radius-s);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Dark Mode Overrides */
+body.dark-mode .huaca-card,
+body.dark-mode .route-card,
+body.dark-mode .post-card,
+body.dark-mode .stats-panel,
+body.dark-mode .badges-panel,
+body.dark-mode .leaderboard-panel,
+body.dark-mode .trivia-section,
+body.dark-mode .rewards-shop,
+body.dark-mode .profile-header,
+body.dark-mode .explore-header,
+body.dark-mode .create-route-panel,
+body.dark-mode .manual-route-panel {
+    background: var(--bg-card);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .search-bar input {
+    background: var(--bg-secondary);
+    color: var(--text-dark);
+}
+
+body.dark-mode .filters select {
+    background: var(--bg-secondary);
+    color: var(--text-dark);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Leaderboard Fixes */
+.leaderboard-table tr.is-me {
+    background: #fff8e1;
+    border: 2px solid var(--primary-color);
+    font-weight: 600;
+}
+
+body.dark-mode .leaderboard-table tr.is-me {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--accent-color);
+}
+
+.leaderboard-table tr.is-me td {
+    color: var(--text-dark);
+}
+
+body.dark-mode .leaderboard-table tr.is-me td {
+    color: var(--accent-color) !important;
+    font-weight: 700;
+}
+
+body.dark-mode .leaderboard-table tr.is-me strong {
+    color: var(--accent-color) !important;
+}
+
+/* Trivia Card Fixes */
+.trivia-card {
+    background: white;
+    padding: 25px;
+    border-radius: var(--border-radius-m);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .trivia-card {
+    background: var(--card-bg-dark);
+    border-color: var(--border-color-dark);
+}
+
+.trivia-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.trivia-option {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-s);
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+body.dark-mode .trivia-option {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color-dark);
+    color: var(--text-light);
+}
+
+.trivia-option:hover {
+    background: var(--hover-primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+body.dark-mode .active-expeditions .expedition-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-bar-container {
+    background: var(--bg-secondary);
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--success-color), var(--primary-color));
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 10px;
+}
+
+.mission-completed {
+    border-left: 5px solid var(--success-color) !important;
+    background: rgba(46, 204, 113, 0.05) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1440px) {
+    .gamification-dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .routes-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .explore-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .ra-experiences-grid,
+    .expeditions-grid,
+    .routes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .huaca-card {
+        flex-direction: column;
+    }
+
+    .huaca-card img {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .app-container {
+        max-width: 2000px;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+/* Rewards Shop Styles */
+.reward-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid transparent;
+}
+
+.reward-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.reward-card.redeemed {
+    opacity: 0.8;
+    border: 2px solid var(--accent-color);
+}
+
+.reward-card.disabled {
+    opacity: 0.7;
+}
+
+.reward-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent-color);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.reward-icon {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+.reward-title {
+    margin: 10px 0;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.reward-cost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: var(--bg-light);
+    border-radius: 8px;
+}
+
+.reward-cost .cost-value {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.reward-cost .cost-label {
+    color: var(--text-medium);
+    font-size: 0.9rem;
+}
+
+.reward-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+.reward-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Dark Mode Overrides for Rewards */
+body.dark-mode .reward-card {
+    background: var(--bg-card);
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .reward-title {
+    color: var(--text-light);
+}
+
+body.dark-mode .reward-cost {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .reward-cost .cost-value {
+    color: var(--accent-color);
+}
+
+/* Ranking Styles */
+.highlight-row {
+    background: rgba(212, 175, 55, 0.15);
+    border-left: 3px solid var(--accent-color);
+}
+
+.ranking-user-name {
+    color: var(--text-dark);
+}
+
+body.dark-mode .ranking-user-name {
+    color: var(--text-light);
+}
+
+body.dark-mode .highlight-row {
+    background: rgba(212, 175, 55, 0.1);
+}
