@@ -1245,3 +1245,14 @@ body.dark-mode .ranking-user-name {
 body.dark-mode .highlight-row {
     background: rgba(212, 175, 55, 0.1);
 }
+
+/*Nuevo ajuste Continuar*/
+.route-actions .button-primary {
+  flex: 1;
+  font-size: 0.85rem;
+  padding: 8px;
+  display: flex;             /* convierte el botón en flex */
+  justify-content: center;   /* centra horizontalmente el texto */
+  align-items: center;       /* centra verticalmente el texto */
+}
+
