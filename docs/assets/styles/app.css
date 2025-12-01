@@ -39,6 +39,12 @@
     box-shadow: var(--shadow-sm);
 }
 
+/*Alineacion Todos los tipos*/
+#filter-type option[value=""] {
+  text-align: center;
+}
+
+
 .search-bar {
     position: relative;
     max-width: 600px;
