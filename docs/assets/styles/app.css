@@ -1268,3 +1268,17 @@ body.dark-mode .highlight-row {
   text-align: center;        /* asegura que el texto se centre */
 }
 
+
+
+#auto-route-btn {
+  width: 100%;
+  padding: 12px;
+
+  /* lo importante para centrar */
+  display: flex;             /* convierte el botón en contenedor flex */
+  justify-content: center;   /* centra horizontalmente el contenido */
+  align-items: center;       /* centra verticalmente */
+  text-align: center;        /* asegura que el texto se centre */
+}
+
+
