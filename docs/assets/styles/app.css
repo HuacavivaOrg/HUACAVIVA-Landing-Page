@@ -1289,3 +1289,13 @@ body.dark-mode .highlight-row {
   align-items: center;
   text-align: center;
 }
+
+
+#new-post-btn {
+  width: 100%;
+  display: flex;             /* convierte el botón en contenedor flex */
+  justify-content: center;   /* centra horizontalmente el ícono y el texto */
+  align-items: center;       /* centra verticalmente */
+  text-align: center;        /* asegura que el texto se centre */
+}
+
