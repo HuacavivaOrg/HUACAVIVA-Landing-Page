@@ -1573,6 +1573,7 @@ function initCommunityModule() {
     // Nuevo Post
     const modal = document.getElementById('new-post-modal');
     document.getElementById('new-post-btn').addEventListener('click', () => {
+        event.preventDefault();
         const select = document.getElementById('post-huaca');
         select.innerHTML = '<option value="">Selecciona una Huaca</option>';
         state.huacas.forEach(h => {
