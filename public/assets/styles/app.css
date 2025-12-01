@@ -1247,12 +1247,16 @@ body.dark-mode .highlight-row {
 }
 
 /*Nuevo ajuste Continuar*/
+/* Aplica a todos los botones dentro de .route-actions */
 .route-actions .button-primary {
   flex: 1;
   font-size: 0.85rem;
   padding: 8px;
-  display: flex;             /* convierte el botón en flex */
+
+  /* lo importante para centrar */
+  display: flex;             /* convierte el botón en contenedor flex */
   justify-content: center;   /* centra horizontalmente el texto */
   align-items: center;       /* centra verticalmente el texto */
+  text-align: center;        /* asegura que el texto se centre */
 }
 
